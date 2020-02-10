@@ -1,4 +1,4 @@
-package io.github.lucun.netheriteupgrade.blocks;
+package io.github.lucun.netheriteupgrade.block;
 
 import io.github.lucun.netheriteupgrade.NetheriteAnvilBlock;
 import net.fabricmc.fabric.api.block.FabricBlockSettings;

@@ -1,6 +1,6 @@
-package io.github.lucun.netheriteupgrade.items;
+package io.github.lucun.netheriteupgrade.item;
 
-import io.github.lucun.netheriteupgrade.blocks.Blocks;
+import io.github.lucun.netheriteupgrade.block.Blocks;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
