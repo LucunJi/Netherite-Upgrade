@@ -8,8 +8,6 @@
     "MixinBlock",
     "MixinClientPlayNetworkHandler"
   ],
-  "client": [
-  ],
   "injectors": {
     "defaultRequire": 1
   }
