@@ -1,7 +1,7 @@
 package io.github.lucun.netheriteupgrade.mixin;
 
 import io.github.lucun.netheriteupgrade.entity.FireproofItemContainerEntity;
-import io.github.lucun.netheriteupgrade.server.processcontroller.ThermalConductionController;
+import io.github.lucun.netheriteupgrade.server.flow.ThermalConductionController;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;

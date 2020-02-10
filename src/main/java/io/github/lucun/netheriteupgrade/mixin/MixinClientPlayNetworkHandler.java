@@ -1,6 +1,6 @@
 package io.github.lucun.netheriteupgrade.mixin;
 
-import io.github.lucun.netheriteupgrade.Main;
+import io.github.lucun.netheriteupgrade.entity.EntityTypes;
 import io.github.lucun.netheriteupgrade.entity.FireproofItemContainerEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
@@ -33,7 +33,7 @@ public abstract class MixinClientPlayNetworkHandler implements ClientPlayPacketL
         double z = packet.getZ();
         EntityType<?> entityType = packet.getEntityTypeId();
         Entity entity = null;
-        if (entityType == Main.FIREPROOF_CONTAINER) {
+        if (entityType == EntityTypes.FIREPROOF_CONTAINER) {
             entity = FireproofItemContainerEntity.make(world, x, y, z);
         }
 

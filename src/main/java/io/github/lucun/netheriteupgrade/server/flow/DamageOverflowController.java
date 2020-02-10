@@ -1,4 +1,4 @@
-package io.github.lucun.netheriteupgrade.server.processcontroller;
+package io.github.lucun.netheriteupgrade.server.flow;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
@@ -10,23 +10,21 @@ import org.apache.logging.log4j.Logger;
 import java.util.Random;
 
 
-public class DamageOverflowController {
+public class DamageOverflowController extends FlowControllerAbstract {
     public static final DamageOverflowController INSTANCE = new DamageOverflowController();
-    private static Logger LOGGER = LogManager.getLogger();
 
     private Random rnd = new Random();
 
     private float damage = 0;
-    private boolean alive = false;
 
     public void begin() {
-        this.alive = true;
+        super.begin();
         this.damage = 0;
     }
 
     public void collect(float dmg) {
         if (!this.alive) {
-            LOGGER.info("Failed to collect overflown damage, the transferrer is not alive!");
+            throw new IllegalStateException("Failed to collect overflown damage, the transferrer is not alive!");
         }
         this.damage += dmg;
     }
@@ -48,13 +46,5 @@ public class DamageOverflowController {
             this.damage = 0;
         }
         return livingEntity.damage(damageSource, dmg);
-    }
-
-    public void end() {
-        this.alive = false;
-    }
-
-    public boolean isAlive() {
-        return alive;
     }
 }

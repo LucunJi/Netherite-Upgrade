@@ -1,6 +1,6 @@
 package io.github.lucun.netheriteupgrade.mixin;
 
-import io.github.lucun.netheriteupgrade.server.processcontroller.DamageOverflowController;
+import io.github.lucun.netheriteupgrade.server.flow.DamageOverflowController;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
