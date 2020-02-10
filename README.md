@@ -26,7 +26,7 @@ Also, this mod is made for public benefit and everyone should have access to it 
 这个 mod 做出来是为了大家都能玩耍，所有人都应该轻松获取到它。
 
 **不允许的行为包括但不限于：**
-- 不注明到这里的链接（https://github.com/LucunJi/netherite-upgrade）并上传这个 mod。但如果它是包括在一个免费、公开的整合包中的话，可以不注明。
+- 不注明到这里的链接（ https://github.com/LucunJi/netherite-upgrade ）并上传这个 mod。但如果它是包括在一个免费、公开的整合包中的话，可以不注明。
 - 提供收费的 mod 副本，或人们需要注册，登录，订阅，点赞或加入你的聊天群组才能下载到这个 mod（即时放在整合包中也应该遵守）。
 - 视频或任何其它形式的模组演示都没问题，但记得注明到这里的链接。但如果它是包括在一个免费、公开的整合包中的话，可以不注明。
 - 如果不清楚，来问我，并且看看 [CC BY-NC-SA 3.0 证书](./LICENSE)！
