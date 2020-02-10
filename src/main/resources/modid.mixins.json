@@ -1,0 +1,16 @@
+{
+  "required": true,
+  "package": "io.github.lucun.netheriteupgrade.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "MixinLivingEntity",
+    "MixinPlayerEntity",
+    "MixinBlock",
+    "MixinClientPlayNetworkHandler"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

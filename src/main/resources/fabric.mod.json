@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "netherite-upgrade",
+  "version": "${version}",
+
+  "name": "Netherite Upgrade",
+  "description": "Upgrade netherite tools and armors for more ability.",
+  "authors": [
+    "LucunJi"
+  ],
+  "contact": {
+    "homepage": "https://github.com/LucunJi/netherite-upgrade",
+    "sources": "https://github.com/LucunJi/netherite-upgrade"
+  },
+
+  "license": "CC-BY-NC-SA-3.0",
+  "icon": "assets/modid/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "io.github.lucun.netheriteupgrade.Main"
+    ]
+  },
+  "mixins": [
+    "modid.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.7.2",
+    "minecraft": "1.16.x"
+  },
+  "suggests": {
+    "flamingo": "*"
+  }
+}

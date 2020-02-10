@@ -1,0 +1,7 @@
+{   "parent": "block/anvil",
+  "textures": {
+    "particle": "block/netherite_block",
+    "body": "block/netherite_block",
+    "top": "block/netherite_block"
+  }
+}

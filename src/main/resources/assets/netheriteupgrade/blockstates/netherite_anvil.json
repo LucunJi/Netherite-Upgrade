@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=south": { "model": "netheriteupgrade:block/netherite_anvil" },
+    "facing=west": { "model": "netheriteupgrade:block/netherite_anvil", "y": 90 },
+    "facing=north": { "model": "netheriteupgrade:block/netherite_anvil", "y": 180 },
+    "facing=east": { "model": "netheriteupgrade:block/netherite_anvil", "y": 270 }
+  }
+}
