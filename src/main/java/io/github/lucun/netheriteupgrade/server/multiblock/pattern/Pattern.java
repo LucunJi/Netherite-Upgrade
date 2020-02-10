@@ -1,39 +1,34 @@
 package io.github.lucun.netheriteupgrade.server.multiblock.pattern;
 
+import com.google.common.collect.Lists;
 import net.minecraft.block.Block;
-import net.minecraft.text.TranslatableText;
+import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class Pattern {
 
     //TODO use fields for optimization
-    private final Set<String> blockKeys;
-    private final SubPattern[] patterns = new SubPattern[8];
+    private final ArrayList<SubPattern> subPatterns;
     private String name;
     
-    public Pattern (Map<BlockPos, Block> basicPattern, String name, Block triggerBlock) {
-        Dimension dimension = Dimension.fromPatternMap(basicPattern);
-        patterns[0] = new SubPattern(dimension, basicPattern);
-        patterns[1] = patterns[1].rotate();
-        patterns[2] = patterns[2].rotate();
-        patterns[3] = patterns[3].rotate();
-        patterns[4] = patterns[0].mirror();
-        patterns[5] = patterns[4].rotate();
-        patterns[6] = patterns[5].rotate();
-        patterns[7] = patterns[6].rotate();
-        blockKeys = new HashSet<>(basicPattern
-                .values()
-                .stream()
-                .map(block -> ((TranslatableText) block.getName()).getKey())
-                .collect(Collectors.toSet()));
+    public Pattern (String name, List<Pair<BlockPos, Block>> basicPattern) {
+        subPatterns = Lists.newArrayList();
+        subPatterns.add(new SubPattern(basicPattern));
+        subPatterns.set(1, subPatterns.get(1).rotate());
+        subPatterns.set(2, subPatterns.get(2).rotate());
+        subPatterns.set(3, subPatterns.get(3).rotate());
+        subPatterns.set(4, subPatterns.get(0).mirror());
+        subPatterns.set(5, subPatterns.get(4).rotate());
+        subPatterns.set(6, subPatterns.get(5).rotate());
+        subPatterns.set(7, subPatterns.get(6).rotate());
+        this.name = name;
     }
 
-    public SubPattern[] getSubPatterns() {
-        return patterns;
+    public Iterator<SubPattern> getSubPatternIterator() {
+        return subPatterns.iterator();
     }
 }
