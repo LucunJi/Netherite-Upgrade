@@ -1,11 +1,10 @@
 package io.github.lucun.netheriteupgrade.server.flow;
 
+import io.github.lucun.netheriteupgrade.api.FlowControllerAbstract;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.sound.SoundEvents;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.Random;
 

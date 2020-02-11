@@ -1,4 +1,4 @@
-package io.github.lucun.netheriteupgrade.server.multiblock.pattern;
+package io.github.lucun.netheriteupgrade.api.multiblock.pattern;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;

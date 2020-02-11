@@ -1,4 +1,4 @@
-package io.github.lucun.netheriteupgrade.server.flow;
+package io.github.lucun.netheriteupgrade.api;
 
 /**
  * One feature can be separated into many parts in different Mixins.

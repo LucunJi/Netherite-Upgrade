@@ -6,10 +6,12 @@ import io.github.lucun.netheriteupgrade.item.Items;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.client.MinecraftClient;
 import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class Main implements ModInitializer {
 
-	private static MinecraftClient mc = MinecraftClient.getInstance();
+	public static final Logger LOGGER = LogManager.getLogger();
+    private static MinecraftClient mc = MinecraftClient.getInstance();
 
 	@Override
 	public void onInitialize() {
