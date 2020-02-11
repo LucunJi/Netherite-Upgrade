@@ -11,12 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class SubPattern {
+public class SubPatternHardCoded implements ISubPattern {
     private final List<Pair<BlockPos, Block>> patternList;
     private final Map<BlockPos, Block> patternMap;
     private final Map<String, ArrayList<BlockPos>> key2posListMap;
 
-    public SubPattern (List<Pair<BlockPos, Block>> patternList) {
+    public SubPatternHardCoded(List<Pair<BlockPos, Block>> patternList) {
         this.patternList = patternList;
         key2posListMap = Maps.newHashMap();
         this.patternMap = Maps.newHashMap();
@@ -31,24 +31,24 @@ public class SubPattern {
 
     }
 
-    public SubPattern mirror() {
+    public SubPatternHardCoded mirror() {
         List<Pair<BlockPos, Block>> newList = new ArrayList<>(patternList.size());
         for (Pair<BlockPos, Block> pair : patternList) {
             BlockPos pos = pair.getLeft();
             Block block = pair.getRight();
             newList.add(new Pair<>(new BlockPos(-pos.getX(), pos.getY(), pos.getZ()), block));
         }
-        return new SubPattern(newList);
+        return new SubPatternHardCoded(newList);
     }
 
-    public SubPattern rotate() {
+    public SubPatternHardCoded rotate() {
         List<Pair<BlockPos, Block>> newList = new ArrayList<>(patternList.size());
         for (Pair<BlockPos, Block> pair : patternList) {
             BlockPos pos = pair.getLeft();
             Block block = pair.getRight();
             newList.add(new Pair<>(new BlockPos(-pos.getZ(), pos.getY(), pos.getX()), block));
         }
-        return new SubPattern(newList);
+        return new SubPatternHardCoded(newList);
     }
 
     public Map<BlockPos, Block> getPatternMap() {
