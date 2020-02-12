@@ -23,7 +23,7 @@ public class MixinBeehiveBlockEntity extends BlockEntity {
     private void onTick(CallbackInfo callbackInfo) {
         if (!this.world.isClient()) {
             if (BeehiveBlockEntity.getHoneyLevel(this.getCachedState()) == 5 && this.world.random.nextInt(20 * 60 * 20) == 0) {
-                for (BlockPos blockPos : BlockPos.iterate(this.getPos().subtract(new BlockPos(5, 5, 5)), this.getPos().add(5, 5, 5))) {
+                for (BlockPos blockPos : BlockPos.iterate(this.getPos().subtract(new BlockPos(3, 5, 3)), this.getPos().add(3, 0, 3))) {
                     if (ChunkRandom.create(this.getPos().getX() >> 4, this.getPos().getZ() >> 4, world.getSeed(), 987234911L).nextInt(10) == 0) {
 
                         HoneySlimeEntity slime = new HoneySlimeEntity(EntityTypes.HONEY_SLIME, world);
