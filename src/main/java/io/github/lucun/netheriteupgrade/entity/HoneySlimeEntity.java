@@ -16,6 +16,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.particle.ParticleEffect;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
@@ -26,21 +28,17 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.LocalDifficulty;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldView;
-import net.minecraft.world.poi.PointOfInterestStorage;
-import net.minecraft.world.poi.PointOfInterestType;
-
-import java.util.function.Predicate;
 
 public class HoneySlimeEntity extends ResourceSlimeEntityBase {
     private int honeyStorage = 0;
     private int honeyRegenCooldown = 0;
 
-    public HoneySlimeEntity(EntityType<? extends SlimeEntity> entityType, World world) {
+    public HoneySlimeEntity(EntityType<? extends HoneySlimeEntity> entityType, World world) {
         super(entityType, world);
         this.moveControl = new SlimeAI.SlimeMoveControl(this);
     }
 
+    /********** Initializations **********/
     @Override
     protected void initGoals() {
         this.goalSelector.add(1, new SlimeAI.SwimmingGoal(this));
@@ -63,6 +61,12 @@ public class HoneySlimeEntity extends ResourceSlimeEntityBase {
 //            }
 //        });
     }
+
+    @Override
+    protected ParticleEffect getParticles() {
+        return ParticleTypes.LANDING_HONEY;
+    }
+
     @Override
     public EntityData initialize(IWorld world, LocalDifficulty difficulty, SpawnType spawnType, EntityData entityData, CompoundTag entityTag) {
         float f = world.getRandom().nextFloat();
@@ -81,15 +85,24 @@ public class HoneySlimeEntity extends ResourceSlimeEntityBase {
     }
 
     @Override
+    protected Identifier getLootTableId() {
+        return null;
+    }
+
+    /********** Pacifist **********/
+    @Override
+    public void onPlayerCollision(PlayerEntity player) {
+    }
+
+    @Override
     public boolean damage(DamageSource source, float amount) {
         if (super.damage(source, amount)) {
             if (source.getAttacker() != null && source.getAttacker() instanceof LivingEntity) {
                 this.world.getEntities(
                         BeeEntity.class,
-                        new Box(this.getPos().subtract(-5, -5, -5), this.getPos().add(5, 5, 5)),
+                        this.getBoundingBox().expand(5),
                         null)
-                        .forEach(beeEntity -> beeEntity.setAttacker(((LivingEntity) source.getAttacker()))
-                        );
+                        .forEach(beeEntity -> beeEntity.setAttacker(((LivingEntity) source.getAttacker())));
             }
             return true;
         } else {
@@ -97,13 +110,15 @@ public class HoneySlimeEntity extends ResourceSlimeEntityBase {
         }
     }
 
-    @Override
-    protected Identifier getLootTableId() {
-        return null;
+    /********** Generate and decrease honey **********/
+    private void generateHoney() {
+        if (this.getHoneyCooldown() == 0) {
+            this.setHoneyStorage(this.getHoneyStorage() + 1);
+            this.setHoneyCooldown(5 * 60 * 20 * (this.getSize()));
+        } else {
+            this.setHoneyCooldown(this.getHoneyCooldown() - 1);
+        }
     }
-
-    @Override
-    protected void split() {}
 
     @Override
     public boolean interactMob(PlayerEntity player, Hand hand) {
@@ -129,30 +144,16 @@ public class HoneySlimeEntity extends ResourceSlimeEntityBase {
     }
 
     @Override
-    public void tick() {
-        this.generateHoney();
-        super.tick();
-    }
-
-    private void generateHoney() {
-        if (this.getHoneyCooldown() == 0) {
-            this.setHoneyStorage(this.getHoneyStorage() + 1);
-            this.setHoneyCooldown(5 * 60 * 20 * (this.getSize()));
-        } else {
-            this.setHoneyCooldown(this.getHoneyCooldown() - 1);
-        }
-    }
-
-    @Override
     protected void tryGrow() {
+        this.generateHoney();
         // grow up
         if (this.getSize() < 2 && this.getHoneyStorage() >= 4) {
             this.setSize(2, false);
-            this.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 20*5));
+            this.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, (4-1)*50));
         }
         if (this.getSize() < 4 && this.getHoneyStorage() >= 15) {
             this.setSize(4, false);
-            this.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 20*25));
+            this.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, (16-4)*50));
         }
 
         // shrink down
@@ -166,10 +167,7 @@ public class HoneySlimeEntity extends ResourceSlimeEntityBase {
         }
     }
 
-    @Override
-    public void onPlayerCollision(PlayerEntity player) {
-    }
-
+    /********** Getters and setters **********/
     @Override
     public void writeCustomDataToTag(CompoundTag tag) {
         super.writeCustomDataToTag(tag);
@@ -199,4 +197,8 @@ public class HoneySlimeEntity extends ResourceSlimeEntityBase {
     public void setHoneyCooldown(int honeyRegenCooldown) {
         this.honeyRegenCooldown = Math.max(honeyRegenCooldown, 0);
     }
+
+    /********** Useless **********/
+    @Override
+    protected void split() {}
 }

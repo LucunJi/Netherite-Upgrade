@@ -12,6 +12,9 @@ import net.minecraft.sound.SoundEvents;
 
 import java.util.EnumSet;
 
+/**
+ * Copied from vanilla source code
+ */
 public class SlimeAI {
     public static class MoveGoal extends Goal {
         private final SlimeEntity slime;

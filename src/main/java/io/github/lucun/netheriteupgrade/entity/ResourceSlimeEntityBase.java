@@ -5,6 +5,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnType;
 import net.minecraft.entity.mob.SlimeEntity;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.particle.ParticleEffect;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.LocalDifficulty;
@@ -41,4 +42,7 @@ public abstract class ResourceSlimeEntityBase extends SlimeEntity {
     protected abstract void split();
 
     protected abstract void tryGrow();
+
+    @Override
+    protected abstract ParticleEffect getParticles();
 }
