@@ -1,29 +1,31 @@
 package io.github.lucun.netheriteupgrade.entity;
 
-import com.google.common.collect.Maps;
+import io.github.lucun.netheriteupgrade.client.render.entity.HoneySlimeRenderer;
 import net.fabricmc.fabric.api.client.rendereregistry.v1.EntityRendererRegistry;
 import net.minecraft.client.render.entity.ItemEntityRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCategory;
 import net.minecraft.entity.EntityType;
-import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
-import java.util.Map;
-
 public class EntityTypes {
-    private static Map<String, Item> types = Maps.newHashMap();
-
-    public static EntityType<FireproofItemContainerEntity> FIREPROOF_CONTAINER;
+    public static EntityType<FireproofItemEntity> FIREPROOF_CONTAINER;
+    public static EntityType<HoneySlimeEntity> HONEY_SLIME;
 
     static {
         FIREPROOF_CONTAINER = register(
-                "fireproof_container", EntityType.Builder.create(
-                FireproofItemContainerEntity::new,
+                "item_fireproof", EntityType.Builder.create(
+                FireproofItemEntity::new,
                 EntityCategory.MISC)
                 .makeFireImmune().setDimensions(0.25f, 0.25f),
                 (type, factory) -> new ItemEntityRenderer(type, factory.getItemRenderer()));
+        HONEY_SLIME = register(
+                "honey_slime", EntityType.Builder.create(
+                        HoneySlimeEntity::new,
+                        EntityCategory.CREATURE)
+                .setDimensions(2.0f, 2.04f),
+                (type, factory) -> new HoneySlimeRenderer(type));
     }
 
     private static EntityType register(String name, EntityType.Builder<? extends Entity> builder, EntityRendererRegistry.Factory factory) {

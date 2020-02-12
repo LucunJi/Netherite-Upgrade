@@ -9,12 +9,12 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class PatternHardCoded implements IPattern {
+public final class PatternHardCoded implements IPattern {
 
     private final ArrayList<SubPatternHardCoded> subPatterns;
     private String name;
     
-    public PatternHardCoded(String name, List<Pair<BlockPos, Block>> basicPattern) {
+    public PatternHardCoded(String name, List<BlockEntry> basicPattern) {
         subPatterns = Lists.newArrayList();
         subPatterns.add(new SubPatternHardCoded(basicPattern));
         subPatterns.add(subPatterns.get(0).rotate());

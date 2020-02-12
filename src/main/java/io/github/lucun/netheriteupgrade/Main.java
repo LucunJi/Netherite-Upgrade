@@ -5,6 +5,7 @@ import io.github.lucun.netheriteupgrade.entity.EntityTypes;
 import io.github.lucun.netheriteupgrade.item.Items;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.util.registry.Registry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

@@ -1,6 +1,7 @@
 package io.github.lucun.netheriteupgrade.structure;
 
 import com.google.common.collect.Lists;
+import io.github.lucun.netheriteupgrade.api.multiblock.pattern.BlockEntry;
 import io.github.lucun.netheriteupgrade.api.multiblock.pattern.PatternHardCoded;
 import net.minecraft.block.Blocks;
 import net.minecraft.util.Pair;
@@ -11,10 +12,10 @@ public class Patterns {
 
     static {
         TEST = new PatternHardCoded("test", Lists.newArrayList(
-                new Pair<>(new BlockPos(0, 0, 1), Blocks.RED_CONCRETE),
-                new Pair<>(new BlockPos(1, 0, 0), Blocks.BLUE_CONCRETE),
-                new Pair<>(new BlockPos(0, 1, 0), Blocks.GREEN_CONCRETE),
-                new Pair<>(new BlockPos(0, 0, 0), Blocks.WHITE_CONCRETE)
+                new BlockEntry(new BlockPos(0, 0, 1), Blocks.RED_CONCRETE),
+                new BlockEntry(new BlockPos(1, 0, 0), Blocks.BLUE_CONCRETE),
+                new BlockEntry(new BlockPos(0, 1, 0), Blocks.GREEN_CONCRETE),
+                new BlockEntry(new BlockPos(0, 0, 0), Blocks.WHITE_CONCRETE)
         ));
     }
 }

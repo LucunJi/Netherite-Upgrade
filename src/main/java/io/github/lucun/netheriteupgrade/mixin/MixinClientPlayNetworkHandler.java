@@ -1,7 +1,7 @@
 package io.github.lucun.netheriteupgrade.mixin;
 
 import io.github.lucun.netheriteupgrade.entity.EntityTypes;
-import io.github.lucun.netheriteupgrade.entity.FireproofItemContainerEntity;
+import io.github.lucun.netheriteupgrade.entity.FireproofItemEntity;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.client.sound.RidingMinecartSoundInstance;
@@ -34,7 +34,7 @@ public abstract class MixinClientPlayNetworkHandler implements ClientPlayPacketL
         EntityType<?> entityType = packet.getEntityTypeId();
         Entity entity = null;
         if (entityType == EntityTypes.FIREPROOF_CONTAINER) {
-            entity = FireproofItemContainerEntity.make(world, x, y, z);
+            entity = FireproofItemEntity.make(world, x, y, z);
         }
 
         if (entity != null) {
