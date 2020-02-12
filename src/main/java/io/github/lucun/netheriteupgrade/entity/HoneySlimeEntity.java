@@ -3,12 +3,11 @@ package io.github.lucun.netheriteupgrade.entity;
 import com.google.common.base.Predicates;
 import io.github.lucun.netheriteupgrade.entity.ai.SlimeAI;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.goal.FollowTargetGoal;
-import net.minecraft.entity.ai.goal.MoveToTargetPosGoal;
-import net.minecraft.entity.ai.goal.TemptGoal;
+import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.SlimeEntity;
 import net.minecraft.entity.passive.BeeEntity;
 import net.minecraft.entity.passive.SheepEntity;
@@ -45,10 +44,12 @@ public class HoneySlimeEntity extends ResourceSlimeEntityBase {
         this.goalSelector.add(2, new SlimeAI.FaceTowardTargetGoal(this));
         this.goalSelector.add(3, new SlimeAI.RandomLookGoal(this));
         this.goalSelector.add(5, new SlimeAI.MoveGoal(this));
+        this.targetSelector.add(3, new FollowTargetGoal<>(this, PlayerEntity.class, 10, true, false,
+                player -> player instanceof PlayerEntity && (player.getMainHandStack().getItem() == Items.HONEY_BOTTLE || player.getOffHandStack().getItem() == Items.HONEY_BOTTLE) && this.getSize() <= 2
+        ));
         this.targetSelector.add(7, new FollowTargetGoal<>(this, BeeEntity.class, 20, true, false,
                 bee -> bee instanceof BeeEntity && ((BeeEntity)bee).getFlowerPos() != null && this.getSize() <= 2 && Math.abs(bee.getY() - this.getY()) < 4
         ));
-        //TODO: return to nearest hive after sunset
 //        this.targetSelector.add(8, new MoveToTargetPosGoal(this, 1, 16) {
 //            @Override
 //            protected boolean isTargetPos(WorldView world, BlockPos pos) {
@@ -165,6 +166,11 @@ public class HoneySlimeEntity extends ResourceSlimeEntityBase {
             this.setSize(1, false);
             this.setHealth(this.getMaximumHealth());
         }
+
+        // not willing to leave hive at night
+        if (this.getSize() <= 2 && (this.world.isNight() || this.world.isRaining())) {
+            this.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 100, 1, true, true));
+        }
     }
 
     /********** Getters and setters **********/
@@ -201,4 +207,16 @@ public class HoneySlimeEntity extends ResourceSlimeEntityBase {
     /********** Useless **********/
     @Override
     protected void split() {}
+
+    private static class WanderAroundHiveGoal extends TrackTargetGoal {
+
+        public WanderAroundHiveGoal(MobEntity mob) {
+            super(mob, false);
+        }
+
+        @Override
+        public boolean canStart() {
+            return false;
+        }
+    }
 }
