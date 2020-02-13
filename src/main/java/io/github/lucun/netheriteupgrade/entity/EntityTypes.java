@@ -23,7 +23,7 @@ public class EntityTypes {
         HONEY_SLIME = register(
                 "honey_slime", EntityType.Builder.create(
                         HoneySlimeEntity::new,
-                        EntityCategory.CREATURE)
+                        EntityCategory.MISC)
                 .setDimensions(2.0f, 2.04f),
                 (type, factory) -> new HoneySlimeRenderer(type));
     }

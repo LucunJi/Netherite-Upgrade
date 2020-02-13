@@ -31,7 +31,7 @@ public class HoneySlimeSpawnHelper {
                         if (// if NO_RESTRICTIONS, return true, else, it should be in world border, and of non-null EntityType
                             // if ON_GROUND, light level < 14 and isSideSolidFullSquare(view, pos, Direction.UP) and isClearForSpawn
                             // if IN_WATER, there should be water and is not a SimpleFullBlock
-                                SpawnHelper.canSpawn(SpawnRestriction.Location.ON_GROUND, world, hivePos, EntityTypes.HONEY_SLIME)) {
+                                SpawnHelper.canSpawn(SpawnRestriction.Location.ON_GROUND, world, spawnPos, EntityTypes.HONEY_SLIME)) {
 
                             HoneySlimeEntity slime = new HoneySlimeEntity(EntityTypes.HONEY_SLIME, world);
                             slime.refreshPositionAndAngles(spawnPos, world.getRandom().nextFloat() * 360, 0.0F);

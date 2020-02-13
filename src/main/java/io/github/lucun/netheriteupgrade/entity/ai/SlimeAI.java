@@ -1,5 +1,6 @@
 package io.github.lucun.netheriteupgrade.entity.ai;
 
+import io.github.lucun.netheriteupgrade.entity.HoneySlimeEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.control.MoveControl;
 import net.minecraft.entity.ai.goal.Goal;
@@ -66,6 +67,11 @@ public class SlimeAI {
         }
 
         public boolean canStart() {
+            if (this.slime instanceof HoneySlimeEntity) {
+                if (((HoneySlimeEntity) slime).isFindingHive()) {
+                    return false;
+                }
+            }
             return this.slime.getTarget() == null && (this.slime.onGround || this.slime.isTouchingWater() || this.slime.isInLava() || this.slime.hasStatusEffect(StatusEffects.LEVITATION)) && this.slime.getMoveControl() instanceof SlimeMoveControl;
         }
 
