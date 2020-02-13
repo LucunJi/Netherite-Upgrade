@@ -1,7 +1,6 @@
 # Netherite Upgrade
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License</a>.
-
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png" /></a><br />本作品采用<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">知识共享署名-非商业性使用-相同方式共享 3.0 未本地化版本许可协议</a>进行许可。
+<br />本作品采用<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/">知识共享署名-非商业性使用-相同方式共享 3.0 未本地化版本许可协议</a>进行许可。
 
 ---
 
@@ -13,6 +12,9 @@ Currently working on 20w06a snapshot. This mod adds more things to netherite stu
 You can of course add this mod to modpacks, but **Be careful: don't like other client mods in Fabric, this mod changes some of the vanilla features and may cause instability (especially when installed with other mods) . Plus, you need to install this mod on both server and client side.**
 
 你可以在整合包中加入这个 mod，但是**小心：与其它 Fabric 开发的客户端 mod 不同，这个 mod 会更改一些原版特性，并增加不稳定性（尤其和其它模组一起使用时）。另外，这个模组需要同时被安装在服务端和客户端上。**
+
+# Features / 特性
+- Honey slimes. These cute and friendly creatures rarely appear near hives and are buddies of bees.
 
 # DON'T DOs / 禁止事项
 Also, this mod is made for public benefit and everyone should have access to it easily.
