@@ -9,12 +9,12 @@ Currently working on 20w06a snapshot. This mod adds more things to netherite stu
 
 目前在 20w06a 快照版本开发。这个 mod 对 1.16 Minecraft 加入了更多关于地狱装备的内容。更多内容有待更新……
 
-# Use at your own risk / 使用须知
-You can of course add this mod to modpacks, but **Be careful: this mod alters some of the vanilla features and may cause instability (especially when installed with other mods) . Plus, you need to install this mod on both server and client side.**
+# How to use / 使用须知
+You can of course add this mod to modpacks, but **Be careful: don't like other client mods in Fabric, this mod changes some of the vanilla features and may cause instability (especially when installed with other mods) . Plus, you need to install this mod on both server and client side.**
 
-你可以在整合包中加入这个 mod，但是**小心：这个模组会更改一些原版特性，并增加不稳定性（尤其和其它模组一起使用时）。另外，这个模组需要同时被安装在服务端和客户端上。**
+你可以在整合包中加入这个 mod，但是**小心：与其它 Fabric 开发的客户端 mod 不同，这个 mod 会更改一些原版特性，并增加不稳定性（尤其和其它模组一起使用时）。另外，这个模组需要同时被安装在服务端和客户端上。**
 
-# DON'T DO / 禁止事项
+# DON'T DOs / 禁止事项
 Also, this mod is made for public benefit and everyone should have access to it easily.
 
 **Certain behaviours are not allowed, including but not limited to:**
