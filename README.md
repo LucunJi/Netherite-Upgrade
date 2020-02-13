@@ -14,7 +14,11 @@ You can of course add this mod to modpacks, but **Be careful: don't like other c
 你可以在整合包中加入这个 mod，但是**小心：与其它 Fabric 开发的客户端 mod 不同，这个 mod 会更改一些原版特性，并增加不稳定性（尤其和其它模组一起使用时）。另外，这个模组需要同时被安装在服务端和客户端上。**
 
 # Features / 特性
+- More abilitis of netherite tools. They worth the rarity.
 - Honey slimes. These cute and friendly creatures rarely appear near hives and are buddies of bees.
+
+- 更多地狱工具的能力。它们配得上这个稀有度。
+- 蜂蜜史莱姆。这些可爱的家伙偶尔会在蜂巢附近出现。它们是蜜蜂的好朋友。
 
 # DON'T DOs / 禁止事项
 Also, this mod is made for public benefit and everyone should have access to it easily.
