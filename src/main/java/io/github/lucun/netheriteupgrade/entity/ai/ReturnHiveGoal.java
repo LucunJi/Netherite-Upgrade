@@ -40,9 +40,10 @@ public class ReturnHiveGoal extends Goal {
         if (!validateHive() && !findNearestHive()) {
             this.slimeEntity.setNearHive(false);
         } else if (this.slimeEntity.getBlockPos().getSquaredDistance(target) > this.rangeFromHive * this.rangeFromHive) {
-                this.slimeEntity.setNearHive(true);
+                this.slimeEntity.setNearHive(false);
                 return true;
         }
+        this.slimeEntity.setNearHive(true);
         return false;
     }
 
@@ -61,11 +62,13 @@ public class ReturnHiveGoal extends Goal {
 
     @Override
     public boolean shouldContinue() {
-
         if (!validateHive() && !findNearestHive()) {
             return false;
         } else {
-            return this.slimeEntity.getBlockPos().getSquaredDistance(target) > this.rangeFromHive * rangeFromHive / 7;
+            int distSq = (int)this.slimeEntity.getBlockPos().getSquaredDistance(target);
+            int rangeSq = this.rangeFromHive * this.rangeFromHive;
+            this.slimeEntity.setNearHive(distSq < rangeSq);
+            return distSq > rangeSq / 7;
         }
     }
 

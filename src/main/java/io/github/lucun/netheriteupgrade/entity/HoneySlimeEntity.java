@@ -117,7 +117,7 @@ public class HoneySlimeEntity extends ResourceSlimeEntityBase {
         if (this.getHoneyCooldown() == 0) {
             this.setHoneyStorage(this.getHoneyStorage() + 1);
             this.setHoneyCooldown(5 * 60 * 20 * (this.getSize()));
-        } else {
+        } else if (this.isNearHive && this.getSize() < 15) {
             this.setHoneyCooldown(this.getHoneyCooldown() - 1);
         }
     }
