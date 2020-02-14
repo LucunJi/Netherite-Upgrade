@@ -6,7 +6,7 @@
     "MixinLivingEntity",
     "MixinPlayerEntity",
     "MixinBlock",
-    "MixinBlockItem",
+    "MixinServerWorld",
     "MixinClientPlayNetworkHandler",
     "MixinBeehiveBlockEntity"
   ],

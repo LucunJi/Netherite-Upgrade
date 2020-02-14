@@ -1,4 +1,4 @@
-package io.github.lucun.netheriteupgrade.server.flow;
+package io.github.lucun.netheriteupgrade.server.controller;
 
 
 import io.github.lucun.netheriteupgrade.api.FlowControllerAbstract;

@@ -11,16 +11,14 @@ public class PatternMatcher {
 
     public static final MatchingAdaptor DEFAULT_ADAPTOR = (patternBlock, worldBlockState, relativePos) -> patternBlock == worldBlockState.getBlock();
 
-    public static Optional<MatchResult> matchSubPatterns(World world, BlockPos worldPosBegin, PatternHardCoded pattern) {
+    public static Optional<MatchResult> matchSubPatterns(World world, BlockPos worldPosBegin, IPattern pattern) {
         return matchSubPatterns(world, worldPosBegin, pattern, DEFAULT_ADAPTOR);
     }
 
-    public static Optional<MatchResult> matchSubPatterns(World world, BlockPos worldPosBegin, PatternHardCoded pattern, MatchingAdaptor adaptor) {
-        Iterator<SubPatternHardCoded> iterator = pattern.getSubPatternIterator();
-        while (iterator.hasNext()) {
-            SubPatternHardCoded subPattern = iterator.next();
-            for (Iterator<BlockEntry> it = subPattern.blockIterator(); it.hasNext(); ) {
-                BlockEntry entry = it.next();
+    public static Optional<MatchResult> matchSubPatterns(World world, BlockPos worldPosBegin, IPattern pattern, MatchingAdaptor adaptor) {
+        Iterable<? extends ISubPattern> subPatterns = pattern.getSubPatterns();
+        for (ISubPattern subPattern : subPatterns) {
+            for (BlockEntry entry : subPattern.blockEntries()) {
                 BlockPos relativePosBegin = entry.getBlockPos();
                 Block block = entry.getBlock();
 
@@ -35,16 +33,15 @@ public class PatternMatcher {
         return Optional.empty();
     }
 
-    public static Optional<BlockPos> matchForOrigin(World world, BlockPos worldPosBegin, BlockPos relativePosBegin, SubPatternHardCoded subPattern) {
+    public static Optional<BlockPos> matchForOrigin(World world, BlockPos worldPosBegin, BlockPos relativePosBegin, ISubPattern subPattern) {
         return matchForOrigin(world, worldPosBegin, relativePosBegin, subPattern, DEFAULT_ADAPTOR);
     }
 
-    public static Optional<BlockPos> matchForOrigin(World world, BlockPos worldPosBegin, BlockPos relativePosBegin, SubPatternHardCoded subPattern, MatchingAdaptor adaptor) {
+    public static Optional<BlockPos> matchForOrigin(World world, BlockPos worldPosBegin, BlockPos relativePosBegin, ISubPattern subPattern, MatchingAdaptor adaptor) {
         BlockPos worldPosOrigin = worldPosBegin.subtract(relativePosBegin);
-        for (Iterator<BlockEntry> it = subPattern.blockIterator(); it.hasNext(); ) {
-            BlockEntry pair = it.next();
-            BlockPos relativePos = pair.getBlockPos();
-            Block targetBlock = pair.getBlock();
+        for (BlockEntry entry : subPattern.blockEntries()) {
+            BlockPos relativePos = entry.getBlockPos();
+            Block targetBlock = entry.getBlock();
             if (!adaptor.match(targetBlock, world.getBlockState(worldPosOrigin.add(relativePos)), relativePos)) {
                 return Optional.empty();
             }

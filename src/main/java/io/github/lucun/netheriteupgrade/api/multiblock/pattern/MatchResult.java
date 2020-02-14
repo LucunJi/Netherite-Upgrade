@@ -4,9 +4,9 @@ import net.minecraft.util.math.BlockPos;
 
 public class MatchResult {
     BlockPos origin;
-    SubPatternHardCoded pattern;
+    ISubPattern pattern;
 
-    public MatchResult(BlockPos pos, SubPatternHardCoded subPattern) {
+    public MatchResult(BlockPos pos, ISubPattern subPattern) {
         this.origin = pos;
         this.pattern = subPattern;
     }
@@ -15,7 +15,7 @@ public class MatchResult {
         return origin;
     }
 
-    public SubPatternHardCoded getPattern() {
+    public ISubPattern getPattern() {
         return pattern;
     }
 

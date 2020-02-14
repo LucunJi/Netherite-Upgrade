@@ -1,6 +1,6 @@
 package io.github.lucun.netheriteupgrade.entity;
 
-import io.github.lucun.netheriteupgrade.entity.ai.LookNearHiveGoal;
+import io.github.lucun.netheriteupgrade.entity.ai.ReturnHiveGoal;
 import io.github.lucun.netheriteupgrade.entity.ai.SlimeAI;
 import net.minecraft.entity.EntityData;
 import net.minecraft.entity.EntityType;
@@ -28,11 +28,14 @@ import net.minecraft.world.World;
 public class HoneySlimeEntity extends ResourceSlimeEntityBase {
     private int honeyStorage = 0;
     private int honeyRegenCooldown = 0;
-    private boolean isFindingHive = false;
+    private boolean isFindingHive;
+    private boolean isNearHive;
 
     public HoneySlimeEntity(EntityType<? extends HoneySlimeEntity> entityType, World world) {
         super(entityType, world);
         this.moveControl = new SlimeAI.SlimeMoveControl(this);
+        this.isFindingHive = false;
+        this.isNearHive = false;
     }
 
     /********** Initializations **********/
@@ -40,7 +43,7 @@ public class HoneySlimeEntity extends ResourceSlimeEntityBase {
     protected void initGoals() {
         this.goalSelector.add(1, new SlimeAI.SwimmingGoal(this));
         this.goalSelector.add(2, new SlimeAI.FaceTowardTargetGoal(this));
-        this.targetSelector.add(4, new LookNearHiveGoal(this, 8, 32));
+        this.targetSelector.add(4, new ReturnHiveGoal(this, 8, 32));
         this.goalSelector.add(3, new SlimeAI.RandomLookGoal(this));
         this.goalSelector.add(5, new SlimeAI.MoveGoal(this));
 
@@ -144,7 +147,8 @@ public class HoneySlimeEntity extends ResourceSlimeEntityBase {
 
     @Override
     protected void tryGrow() {
-        this.generateHoney();
+        if (this.isNearHive)
+            this.generateHoney();
         // grow up
         if (this.isSmall() && this.getHoneyStorage() >= 4) {
             this.setSize(2, false);
@@ -163,11 +167,6 @@ public class HoneySlimeEntity extends ResourceSlimeEntityBase {
         if (!this.isSmall() && this.getHoneyStorage() < 1) {
             this.setSize(1, false);
             this.setHealth(this.getMaximumHealth());
-        }
-
-        // not willing to leave hive at night
-        if (this.getSize() <= 2 && (this.world.isNight() || this.world.isRaining())) {
-            this.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 100, 1, true, true));
         }
     }
 
@@ -212,6 +211,14 @@ public class HoneySlimeEntity extends ResourceSlimeEntityBase {
 
     public void setFindingHive(boolean findingHive) {
         isFindingHive = findingHive;
+    }
+
+    public boolean isNearHive() {
+        return isNearHive;
+    }
+
+    public void setNearHive(boolean nearHive) {
+        isNearHive = nearHive;
     }
 
     /********** Useless **********/

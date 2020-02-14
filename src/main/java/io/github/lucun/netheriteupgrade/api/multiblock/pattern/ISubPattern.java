@@ -6,5 +6,7 @@ public interface ISubPattern {
     ISubPattern rotate();
     ISubPattern mirror();
 
-    Iterator<BlockEntry> blockIterator();
+    Iterable<BlockEntry> blockEntries();
+
+    String getPatternName();
 }
