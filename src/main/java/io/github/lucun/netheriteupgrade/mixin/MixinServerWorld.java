@@ -34,18 +34,18 @@ public abstract class MixinServerWorld extends World {
             value = "HEAD"
     ))
     private void onBlockPlacementSuccess(BlockPos pos, BlockState oldBlock, BlockState newBlock, CallbackInfo callbackInfo) {
-        Optional<MatchResult> result = PatternMatcher.matchSubPatterns(this, pos, Patterns.TEST);
-        Main.LOGGER.info(
-                (this.isClient() ? "Client" : "Server") +
-                        ": Try to match pattern " +
-                        Patterns.TEST.getName() + " -- " +
-                result);
-        result.ifPresent(r -> r
-                .getPattern()
-                .blockEntries()
-                .forEach(entry ->
-                        this.setBlockState(
-                                entry.getBlockPos().add(r.getOrigin()),
-                                Blocks.IRON_BLOCK.getDefaultState())));
+//        Optional<MatchResult> result = PatternMatcher.matchSubPatterns(this, pos, Patterns.TEST);
+//        Main.LOGGER.info(
+//                (this.isClient() ? "Client" : "Server") +
+//                        ": Try to match pattern " +
+//                        Patterns.TEST.getName() + " -- " +
+//                result);
+//        result.ifPresent(r -> r
+//                .getPattern()
+//                .blockEntries()
+//                .forEach(entry ->
+//                        this.setBlockState(
+//                                entry.getBlockPos().add(r.getOrigin()),
+//                                Blocks.IRON_BLOCK.getDefaultState())));
     }
 }

@@ -9,7 +9,7 @@ import net.minecraft.sound.SoundEvents;
 import java.util.Random;
 
 
-public class DamageOverflowController extends FlowControllerAbstract {
+public class DamageOverflowController extends FlowControllerAbstract<Float> {
     public static final DamageOverflowController INSTANCE = new DamageOverflowController();
 
     private Random rnd = new Random();
@@ -21,11 +21,9 @@ public class DamageOverflowController extends FlowControllerAbstract {
         this.damage = 0;
     }
 
-    public void collect(float dmg) {
-        if (!this.alive) {
-            throw new IllegalStateException("Failed to collect overflown damage, the transferrer is not alive!");
-        }
-        this.damage += dmg;
+    @Override
+    protected void onFeed(Float item) {
+        this.damage += item;
     }
 
     public boolean transfer(LivingEntity livingEntity, DamageSource damageSource, float dmg) {

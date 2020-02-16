@@ -10,6 +10,10 @@
     "MixinClientPlayNetworkHandler",
     "MixinBeehiveBlockEntity"
   ],
+  "client": [
+    "MixinChatHud",
+    "MixinChatScreen"
+  ],
   "injectors": {
     "defaultRequire": 1
   }

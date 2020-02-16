@@ -25,7 +25,7 @@ public abstract class MixinLivingEntity extends Entity {
             ))
     private void onSetHealth(float health, CallbackInfo callbackInfo) {
         if (health < 0 && DamageOverflowController.INSTANCE.isAlive()) {
-            DamageOverflowController.INSTANCE.collect(-health);
+            DamageOverflowController.INSTANCE.feed(-health);
         }
     }
 

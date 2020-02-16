@@ -1,4 +1,4 @@
-package io.github.lucun.netheriteupgrade;
+package io.github.lucun.netheriteupgrade.block;
 
 import net.minecraft.block.AnvilBlock;
 import net.minecraft.block.BlockState;
